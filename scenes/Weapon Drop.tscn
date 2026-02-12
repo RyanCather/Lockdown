@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bahq27dp3ky0r"]
+
+[ext_resource type="Script" uid="uid://x0wl6grscf8p" path="res://Scripts/weapon Drop.gd" id="1_byojy"]
+[ext_resource type="ArrayMesh" uid="uid://0tohxaimc3a8" path="res://Weapons/Models/Pistol/MX1 Blaster.res" id="2_4jmqu"]
+[ext_resource type="ArrayMesh" uid="uid://ohf0bdys7dha" path="res://Weapons/Models/Pistol/Magazine.res" id="3_vcge5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_andwr"]
+size = Vector3(0.75, 0.75, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t26jn"]
+size = Vector3(0.75, 0.75, 0.25)
+
+[node name="WeaponDrop" type="RigidBody3D" unique_id=2097301339 groups=["InteractableObject"]]
+collision_layer = 2
+collision_mask = 3
+continuous_cd = true
+script = ExtResource("1_byojy")
+
+[node name="Weapon" type="Node3D" parent="." unique_id=1430500028]
+transform = Transform3D(-5.24537e-07, 0, 12, 0, 12, 0, -12, 0, -5.24537e-07, 0, 0, 0)
+
+[node name="WeaponMesh" type="MeshInstance3D" parent="Weapon" unique_id=460217274]
+unique_name_in_owner = true
+mesh = ExtResource("2_4jmqu")
+
+[node name="WeaponMagazine" type="MeshInstance3D" parent="Weapon" unique_id=917391257]
+unique_name_in_owner = true
+mesh = ExtResource("3_vcge5")
+
+[node name="WeaponBolt" type="MeshInstance3D" parent="Weapon" unique_id=1784909188]
+unique_name_in_owner = true
+
+[node name="WeaponShadow" type="MeshInstance3D" parent="Weapon" unique_id=1755721289]
+unique_name_in_owner = true
+visible = false
+mesh = ExtResource("2_4jmqu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1669031919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_andwr")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=135989226]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D" unique_id=164186057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_t26jn")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

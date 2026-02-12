@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Weapons" format=3 uid="uid://c4go56imggb4j"]
+
+[ext_resource type="Script" uid="uid://c0afljd65dkhp" path="res://Weapons/Weapons.gd" id="3_kniq7"]
+
+[resource]
+script = ExtResource("3_kniq7")
+name = &"Empty"
+Damage = 0
+clip = 0
+maxClip = 0
+reserve = 0
+maxReserve = 0
+rpm = 0
+bulletPhysics = "Hitscan"
+bulletScene = ""
+position = Vector3(0.25, -0.4, -0.5)
+rotation = Vector3(-90, 0, 0)
+scale = Vector3(10, 10, 10)
+sway_min = Vector2(-60, -30)
+sway_max = Vector2(60, 30)
+swaySpeedPosition = 0.06
+swayAmountPosition = 0.2
+randomSwayAmount = 2.0
+verticalRecoil = 0.0
+metadata/_custom_type_script = "uid://c0afljd65dkhp"

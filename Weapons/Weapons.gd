@@ -1,0 +1,64 @@
+class_name Weapons
+
+extends Resource
+
+@export var name : StringName
+@export_category("Shooting and Ammo")
+@export var Damage = 20
+@export var weight = 1 #Changes thrown weapon damage multiplier
+@export var clip = 8
+@export var maxClip = 8
+@export var reserve = 32
+@export var maxReserve = 80
+@export var rpm = 450
+##Accuracy of 0 means perfect accuracy, higher is more inaccurate
+@export var Accuracy : float = 0
+@export var melee : bool = false
+@export var returnThrownForce : bool = false
+
+
+@export_category("Fire Modes")
+##Toggles whether the weapon will be bolt action/pumped
+@export var shotgun : bool = false
+@export_enum("Magazine", "Shell") var reloadMode: String = "Magazine"
+@export_enum("Semi", "Auto", "Bolt") var fireMode: String = "Semi"
+@export_enum("Projectile", "Hitscan") var bulletPhysics: String = "Projectile"
+@export_file("*.tscn") var bulletScene 
+
+@export_category("Weapon Orientation")
+@export var position : Vector3
+@export var rotation : Vector3
+@export var scale : Vector3 = Vector3(1,1,1)
+
+@export_category("Magazine Offset")
+@export var magazinePosition : Vector3
+@export var magazineRotation : Vector3
+@export var magazineScale : Vector3 = Vector3(1,1,1)
+
+@export_category("Bolt Offset")
+@export var boltPosition : Vector3
+@export var boltRotation : Vector3
+@export var boltScale : Vector3 = Vector3(1,1,1)
+
+@export_category("Weapon Sway")
+@export var sway_min : Vector2 = Vector2(-20.0,-20.0)
+@export var sway_max : Vector2 = Vector2(20.0,20.0)
+@export_range(0,0.2,0.01) var swaySpeedPosition : float = 0.07
+@export_range(0,0.2,0.01) var swaySpeedRotation : float = 0.1
+@export_range(0,0.25,0.01) var swayAmountPosition : float = 0.1
+@export_range(0,50,0.1) var swayAmountRotation : float = 30
+
+@export_category("Idle Sway")
+@export var idleSwayAdjustment : float = 1.0
+@export var idleSwayRotationStrength : float = 300.0
+@export_range(0.1,10.0,0.1) var randomSwayAmount : float = 5.0
+
+@export_category("Recoil Config")
+@export var verticalRecoil : float = 3.0
+@export var horizontalRecoil : float = 0.0
+
+@export_category("Visual Settings")
+@export var mesh : Mesh
+@export var magazine : Mesh
+@export var bolt : Mesh
+@export var shadow : bool

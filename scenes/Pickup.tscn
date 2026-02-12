@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b5g43twq7o0jo"]
+
+[ext_resource type="Script" uid="uid://bp4wgictjsbe5" path="res://Scripts/Pickup.gd" id="1_32chl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5hpgd"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0fiy0"]
+albedo_color = Color(0, 0.939305, 0.926795, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wilfj"]
+material = SubResource("StandardMaterial3D_0fiy0")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ovxdq"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="PointPickup" type="RigidBody3D" unique_id=1446272795]
+collision_layer = 2
+script = ExtResource("1_32chl")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=360330481]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1456245088]
+shape = SubResource("BoxShape3D_5hpgd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1557624558]
+mesh = SubResource("BoxMesh_wilfj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=169400679]
+shape = SubResource("BoxShape3D_ovxdq")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

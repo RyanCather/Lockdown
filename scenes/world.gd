@@ -6,7 +6,7 @@ extends Node
 @onready var health_bar = $CanvasLayer/HUD/HealthBar
 
 
-@onready var Player = preload("res://scenes/player.tscn")
+@onready var Player = preload("res://controllers/fps_controller.tscn")
 #@onready var Player = $Player
 var tracked = false
 var player
@@ -35,9 +35,9 @@ func _on_join_button_pressed():
 	enet_peer.create_client(address_entry.text, PORT)
 	multiplayer.multiplayer_peer = enet_peer
 
-func _on_multiplayer_spawner_spawned(node):
-	if node.is_multiplayer_authority():
-		node.health_changed.connect(update_health_bar)
+#func _on_multiplayer_spawner_spawned(node):
+	#if node.is_multiplayer_authority():
+		#node.health_changed.connect(update_health_bar)
 func upnp_setup():
 	var upnp = UPNP.new()
 	
@@ -76,8 +76,8 @@ func add_player(peer_id):
 	player.name = str(peer_id)
 	add_child(player)
 	tracked = true
-	if player.is_multiplayer_authority():
-		player.health_changed.connect(update_health_bar)
+	#if player.is_multiplayer_authority():
+		#player.health_changed.connect(update_health_bar)
 
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))

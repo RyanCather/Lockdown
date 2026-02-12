@@ -125,7 +125,7 @@ value = 3.0
 show_percentage = false
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1971673780]
-_spawnable_scenes = PackedStringArray("uid://xcjrjq5cbn7y")
+_spawnable_scenes = PackedStringArray("uid://c3ffql15mo0aj")
 spawn_path = NodePath("..")
 
 [node name="Enemy" parent="." unique_id=204833997 instance=ExtResource("3_nule3")]

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://csj7vcqrenjsi"]
+
+[ext_resource type="Script" uid="uid://barqei8kroiys" path="res://Weapons/WeaponManager.gd" id="1_tj3qj"]
+[ext_resource type="Resource" uid="uid://sc0678yoejno" path="res://Weapons/Blaster.tres" id="2_walpv"]
+[ext_resource type="ArrayMesh" uid="uid://0tohxaimc3a8" path="res://Weapons/Models/Pistol/MX1 Blaster.res" id="3_5q7d7"]
+[ext_resource type="ArrayMesh" uid="uid://ohf0bdys7dha" path="res://Weapons/Models/Pistol/Magazine.res" id="4_lubmj"]
+
+[node name="Weapon" type="Node3D" unique_id=1183526851]
+transform = Transform3D(12, 0, 0, 0, -5.2453663e-07, 12, 0, -12, -5.2453663e-07, 0.25, -0.4, -0.5)
+script = ExtResource("1_tj3qj")
+weaponType = ExtResource("2_walpv")
+swaySpeed = 1.0
+reset = true
+
+[node name="WeaponMesh" type="MeshInstance3D" parent="." unique_id=192297091]
+unique_name_in_owner = true
+mesh = ExtResource("3_5q7d7")
+
+[node name="WeaponMagazine" type="MeshInstance3D" parent="." unique_id=1020052104]
+unique_name_in_owner = true
+mesh = ExtResource("4_lubmj")
+
+[node name="WeaponBolt" type="MeshInstance3D" parent="." unique_id=100677615]
+unique_name_in_owner = true
+
+[node name="WeaponShadow" type="MeshInstance3D" parent="." unique_id=1117034354]
+unique_name_in_owner = true
+visible = false
+mesh = ExtResource("3_5q7d7")

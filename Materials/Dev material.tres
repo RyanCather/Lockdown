@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cipnbx8j3em41"]
+
+[resource]
+ao_enabled = true
+uv1_triplanar = true

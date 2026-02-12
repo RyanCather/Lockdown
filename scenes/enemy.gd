@@ -14,7 +14,7 @@ func update_target_location (target_location):
 func _physics_process(delta):
 	var current_location = global_transform.origin
 	var next_location = nav_agent.get_next_path_position()
-	look_at(next_location) # Enemy will turn to face player
+	#look_at(next_location) # Enemy will turn to face player
 	
 	# Vector Maths
 	var new_veloicty = (next_location-current_location).normalized() * SPEED
