@@ -18,6 +18,11 @@ var weaponWeight = 1
 var weaponReturning = false
 var returning = false
 
+
+#Attributes for items
+var isItemTag = false
+
+
 #defaultStats tells the Weapon Manager to use the files default ammo
 #Turning it off will pull the ammo from the values here, which are set when the weapon is dropped.
 #Can be used to give custom ammo, such as guns with extra ammo, or no ammo for specific level.
@@ -72,6 +77,14 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			returning = true
 		body.take_damage(roundi(hitVelocity * (2 + weaponWeight)), "throw")
 
+
+func setAttribute(attribute, value):
+	#Add attributes to item here, incase we need more properties
+	match attribute:
+		"isItem":
+			isItemTag = true
+	
+	
 
 func _physics_process(delta: float) -> void:
 	if returning:
