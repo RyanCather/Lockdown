@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Weapons" format=3 uid="uid://cu2brfwp05337"]
+
+[ext_resource type="Script" uid="uid://c0afljd65dkhp" path="res://Weapons/Weapons.gd" id="1_82bhj"]
+
+[resource]
+script = ExtResource("1_82bhj")
+name = &"Gold Bar"
+Damage = 0
+weight = 0
+clip = 0
+maxClip = 0
+reserve = 0
+maxReserve = 0
+rpm = 0
+bulletScene = null
+metadata/_custom_type_script = "uid://c0afljd65dkhp"
