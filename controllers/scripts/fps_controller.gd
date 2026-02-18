@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var CROUCH_SHAPECAST : Node3D = %ShapeCast3D
 @onready var weaponController : WeaponController = $CameraController/Camera3D/WeaponRig/Weapon
 @onready var hud = $UserInterface
+@onready var animationPlayer = $"Level Fade"
 
 var _mouse_input : bool = false
 var _rotation_input : float
@@ -76,6 +77,8 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	#Prevents player from activating crouch cast
 	CROUCH_SHAPECAST.add_exception($".")
+	#THIS WILL BE ANNOUNCE NOT LEVEL CHANGE TEXT
+	#showLevelText("This is a test for if robbers got something")
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
@@ -126,3 +129,11 @@ func take_damage(damage, type):
 		position = get_node("/root/World/Spawnpoint").position
 		velocity = Vector3(0, 0, 0)
 		Global.playerHealth = 100
+
+#THIS NEEDS UPDATING TO NEW UI PLEASE
+#WILL BE ANNOUNCEMENT TEXT NOT LEVEL CHANGE
+#func showLevelText(spawnText):
+	#%"Spawn Label".text = spawnText
+	#animationPlayer.play("Level Fade", -1, 1, false)
+	#await animationPlayer.animation_finished
+	#animationPlayer.play("Level Fade", -1, -1, true)
