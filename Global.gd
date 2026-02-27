@@ -52,3 +52,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+#This function is for adding things to in game debug menu
+#Format:
+#Global.debug.addProperty("Display Name", Variable, Position on debug board)
+
+#Example formatting
+#Global.debug.addProperty("Stamina", stamina, 2)
