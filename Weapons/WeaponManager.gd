@@ -290,7 +290,7 @@ func shoot() -> void:
 				for i in 8:
 					var hitBody = castBulletRay()
 					if hitBody and hitBody.has_method("take_damage"):
-						hitBody.take_damage.rpc_id(hitBody.get_multiplayer_authority(), weaponType.Damage, "bullet")  # Deal damage to the enemy
+						hitBody.take_damage.rpc_id(hitBody.get_multiplayer_authority(), weaponType.Damage, "bullet", Global.myCurrentTeam)  # Deal damage to the enemy
 			else:
 				#Single hitscan shot
 				var hitBody = castBulletRay()
@@ -441,6 +441,7 @@ func dropWeapon():
 		dropInstance.global_position = bulletSpawnPoint.global_position
 		dropInstance.setWeapon(currentWeapon)
 		dropInstance.setModel(currentWeapon)
+		dropInstance.setTeam(Global.myCurrentTeam)
 		dropInstance.parseAmmo(currentClip, currentReserve)
 		weaponGlobal.inventoryWeight -= weaponType.weight
 		
@@ -459,16 +460,17 @@ func dropWeapon():
 			loadWeapon()
 
 		#Replicates the drop to the other players on the server
-		rpc("replicateDroppedWeapon", str(currentWeapon), currentClip, currentReserve, dropInstance.global_position, dropVel)
+		rpc("replicateDroppedWeapon", str(currentWeapon), currentClip, currentReserve, dropInstance.global_position, dropVel, Global.myCurrentTeam)
 
 #This function is for when another player drops their weapon
 #This creates a version on your side that has the same stats
 @rpc("any_peer")
-func replicateDroppedWeapon(weapon, clip, reserve, dropPos, dropVel):
+func replicateDroppedWeapon(weapon, clip, reserve, dropPos, dropVel, team):
 	var dropInstance = weaponDrop.instantiate()
 	dropInstance.global_position = dropPos
 	get_tree().get_root().add_child(dropInstance)
 	dropInstance.setWeapon(weapon)
+	dropInstance.setTeam(team)
 	dropInstance.setModel(weapon)
 	dropInstance.parseAmmo(clip, reserve)
 	dropInstance.changeVel(dropVel)

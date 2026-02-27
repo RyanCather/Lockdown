@@ -127,13 +127,14 @@ func updateVelocity() -> void:
 	move_and_slide()
 
 @rpc("any_peer")
-func take_damage(damage, type):
-	Global.playerHealth -= damage
-	Global.updateHealth()
-	if Global.playerHealth <= 0:
-		position = get_node("/root/World/Spawnpoint").position
-		velocity = Vector3(0, 0, 0)
-		Global.playerHealth = 100
+func take_damage(damage, type, team):
+	if team != Global.myCurrentTeam:
+		Global.playerHealth -= damage
+		Global.updateHealth()
+		if Global.playerHealth <= 0:
+			position = get_node("/root/World/Spawnpoint").position
+			velocity = Vector3(0, 0, 0)
+			Global.playerHealth = 100
 
 #THIS NEEDS UPDATING TO NEW UI PLEASE
 #WILL BE ANNOUNCEMENT TEXT NOT LEVEL CHANGE

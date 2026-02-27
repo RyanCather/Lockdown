@@ -17,7 +17,7 @@ extends RigidBody3D
 var weaponWeight = 1
 var weaponReturning = false
 var returning = false
-
+@export var teamFilter = "Robber"
 
 #Attributes for items
 var isItemTag = false
@@ -29,6 +29,7 @@ var isItemTag = false
 func _ready():
 	if weaponPath != null:
 		setModel(weaponPath)
+		
 
 
 func update():
@@ -63,7 +64,8 @@ func setModel(weaponType):
 	weaponReturning = loadedWeapon.returnThrownForce
 	weaponParent.scale = loadedWeapon.scale
 
-
+func setTeam(team):
+	teamFilter = team
 
 func changeVel(vel):
 	apply_impulse(vel)

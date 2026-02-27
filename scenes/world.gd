@@ -123,7 +123,10 @@ func assign_team(id):
 		team = "Cop" if randi() % 2 == 0 else "Robber"
 	teams[id] = team
 	print("Player ", id, " assigned to ", team)
+	if id == multiplayer.get_unique_id():
+		Global.myCurrentTeam = team
 	rpc("receive_team_assignment", id, team)
+	
 
 
 @rpc("any_peer", "reliable")
@@ -133,3 +136,4 @@ func receive_team_assignment(id, team):
 	# If this is me, confirm team locally
 	if id == multiplayer.get_unique_id():
 		print("I am on team: ", team)
+		Global.myCurrentTeam = team
