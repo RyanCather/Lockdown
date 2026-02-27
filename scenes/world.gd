@@ -10,7 +10,7 @@ extends Node
 var tracked = false
 var player
 var teams = {} # peer_id -> "Cop" or "Robber"
-
+var playercount = 0
 
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
@@ -31,9 +31,11 @@ func _on_host_button_pressed():
 func _on_join_button_pressed():
 	main_menu.hide()
 	hud.show()
-	
-	enet_peer.create_client(address_entry.text, PORT)
-	multiplayer.multiplayer_peer = enet_peer
+	if playercount < 4:
+		enet_peer.create_client(address_entry.text, PORT)
+		multiplayer.multiplayer_peer = enet_peer
+	else:
+		print("TOO MANY PLAYERS!")
 
 #func _on_multiplayer_spawner_spawned(node):
 	#if node.is_multiplayer_authority():
@@ -85,12 +87,16 @@ func add_player(peer_id):
 	add_child(player)
 	assign_team(peer_id)
 	tracked = true
+	playercount += 1 #adds player to playercount
+	print ("playercount is " + str(playercount)) #prints playercount
 	#if player.is_multiplayer_authority():
 		#player.health_changed.connect(update_health_bar)
 
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
 	if player:
+		playercount -= 1 #removes player from playercount
+		print ("playercount is " + str(playercount)) #prints that
 		player.queue_free()
 
 func assign_team(id):

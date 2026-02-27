@@ -106,7 +106,6 @@ navigation_mesh = SubResource("NavigationMesh_rmptm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="UserInterface" type="Control" parent="." unique_id=499654013]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

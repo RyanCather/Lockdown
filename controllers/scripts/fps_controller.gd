@@ -93,6 +93,7 @@ func _physics_process(delta):
 		stamina += ceil(16.5 * delta)
 	playerlabelname.text = str(multiplayer.get_unique_id())
 	
+	
 	## Add the gravity.
 	#if not is_on_floor():
 		#velocity.y -= gravity * delta
