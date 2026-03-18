@@ -88,7 +88,7 @@ func setAttribute(attribute, value):
 	
 	
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if returning:
 		var playerPosition = global_position.direction_to(Global.player.position)
 		linear_velocity += playerPosition * (position.distance_to(Global.player.position) / 16)

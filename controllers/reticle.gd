@@ -11,7 +11,7 @@ func _ready():
 	if not is_multiplayer_authority(): return
 	queue_redraw()
 
-func _process(delta):
+func _process(_delta):
 	if not is_multiplayer_authority(): return
 	adjustReticleLines()
 

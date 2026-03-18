@@ -4,6 +4,7 @@ extends Node
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
 @onready var hud = $UserInterface
 
+@onready var GUI = $GUItasktest
 
 @onready var Player = preload("res://controllers/fps_controller.tscn")
 #@onready var Player = $Player
@@ -59,14 +60,14 @@ func _ready() -> void:
 	Global.clipLabel = %Clip
 	Global.pointsLabel = %Points
 	Global.healthLabel = %Health
+	GUI.hide()
 
-
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 	#if tracked:
 		#get_tree().call_group("enemy", "update_target_location", player.global_transform.origin)
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 
@@ -131,3 +132,17 @@ func receive_team_assignment(id, team):
 	if id == multiplayer.get_unique_id():
 		print("I am on team: ", team)
 		Global.myCurrentTeam = team
+
+
+func _on_guitasktest_pressed() -> void:
+	main_menu.hide()
+	get_tree().change_scene_to_file("res://gameMechanics/hacking_minitask.tscn")
+
+
+
+func _on_area_3d_body_entered(body: Player) -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # Release mouse
+	GUI.show()
+	var minitask = load("res://gameMechanics/hacking_minitask.tscn").instantiate()
+	GUI.add_child(minitask)
+	print("Player interacted with game mechanic")

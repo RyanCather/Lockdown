@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://c7l2n6j51pv0e"]
+
+[ext_resource type="Script" uid="uid://c1wvmwqpcdne2" path="res://gameMechanics/hacking_minitask.gd" id="1_a4q0h"]
+[ext_resource type="Script" uid="uid://dsux2ll1dtpqb" path="res://scenes/2d_player.gd" id="2_7x3vr"]
+[ext_resource type="Texture2D" path="/home/cindysayer/Downloads/Lockdown-main/icon.svg" id="3_mue2p"]
+[ext_resource type="Texture2D" uid="uid://buvxdbhao4n7y" path="res://icon.svg" id="4_vim1e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qc5cr"]
+radius = 50.219517
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vim1e"]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dyur"]
+size = Vector2(20, 4.0603247)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vim1e"]
+size = Vector2(62.000008, 667.0001)
+
+[node name="Hacking Minitask" type="Node2D" unique_id=624052591]
+script = ExtResource("1_a4q0h")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1415991992]
+offset_left = -184.0
+offset_top = -19.00003
+offset_right = 1326.0
+offset_bottom = 656.0
+texture = ExtResource("3_mue2p")
+
+[node name="2DPlayer" type="CharacterBody2D" parent="." unique_id=831064467]
+position = Vector2(156, 443)
+script = ExtResource("2_7x3vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="2DPlayer" unique_id=1027031352]
+texture = ExtResource("3_mue2p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2DPlayer" unique_id=298103553]
+shape = SubResource("CircleShape2D_qc5cr")
+one_way_collision = true
+debug_color = Color(0.562364, 0.5594716, 0, 0.41960785)
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1635634473]
+position = Vector2(547, 510)
+scale = Vector2(1152.5, 646.49994)
+physics_material_override = SubResource("PhysicsMaterial_vim1e")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor" unique_id=332535105]
+position = Vector2(0.032537997, 0.112915814)
+scale = Vector2(0.0079514645, 0.0015467904)
+texture = ExtResource("4_vim1e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1266184854]
+position = Vector2(0.02255964, 0.114462525)
+scale = Vector2(0.049999997, 0.049999997)
+shape = SubResource("RectangleShape2D_2dyur")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=453193021]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" unique_id=1390641286]
+position = Vector2(-20.999996, 323.49994)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_vim1e")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls" unique_id=1282106713]
+position = Vector2(1179.0001, 325)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_vim1e")
