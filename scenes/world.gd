@@ -11,6 +11,10 @@ extends Node
 
 @onready var Player = preload("res://controllers/fps_controller.tscn")
 #@onready var Player = $Player
+
+@onready var cop_spawns = $SpawnPoints2/Cops.get_children()
+@onready var robber_spawns = $SpawnPoints2/Robber.get_children()
+
 @onready var pauseHUD = $PauseLayer
 var tracked = false
 var player
