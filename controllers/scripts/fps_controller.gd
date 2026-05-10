@@ -185,7 +185,6 @@ func updatePlayerModel():
 		copModel.visible = true
 	elif Global.myCurrentTeam == "Robber":
 		robberModel.visible = true
-#Pausing system
 
 
 #THIS NEEDS UPDATING TO NEW UI PLEASE

@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://p0ufc8rwywy3"]
+
+[ext_resource type="Script" uid="uid://bakqjv8uh0jyx" path="res://scenes/main_menu.gd" id="1_0ykhv"]
+[ext_resource type="Theme" uid="uid://dfvf6hx2xcliy" path="res://controllers/Themes/MainMenu.tres" id="1_yqorp"]
+
+[node name="MainMenu" type="Node2D" unique_id=1543144528]
+script = ExtResource("1_0ykhv")
+
+[node name="Menubuttons" type="VBoxContainer" parent="." unique_id=1948515570]
+offset_left = 23.0
+offset_top = 22.0
+offset_right = 354.0
+offset_bottom = 625.0
+
+[node name="Singleplayer" type="Button" parent="Menubuttons" unique_id=1285068060]
+layout_mode = 2
+theme = ExtResource("1_yqorp")
+text = "Singleplayer"
+
+[node name="MultiplayerHost" type="Button" parent="Menubuttons" unique_id=1693817645]
+layout_mode = 2
+theme = ExtResource("1_yqorp")
+text = "Host"
+
+[node name="LineBreak" type="Control" parent="Menubuttons" unique_id=783837631]
+custom_minimum_size = Vector2(5, 20)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Menubuttons" unique_id=830896555]
+layout_mode = 2
+theme = ExtResource("1_yqorp")
+placeholder_text = "Input IP Address..."
+alignment = 1
+
+[node name="Button" type="Button" parent="Menubuttons" unique_id=358674544]
+layout_mode = 2
+theme = ExtResource("1_yqorp")
+text = "Join"
+
+[node name="AnotherLineBreak" type="Control" parent="Menubuttons" unique_id=335253692]
+custom_minimum_size = Vector2(5, 20)
+layout_mode = 2
+
+[node name="Settings" type="Button" parent="Menubuttons" unique_id=74679883]
+layout_mode = 2
+theme = ExtResource("1_yqorp")
+text = "Settings"
+
+[node name="Exit" type="Button" parent="Menubuttons" unique_id=698618489]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("1_yqorp")
+text = "Quit Game"
+
+[connection signal="pressed" from="Menubuttons/Exit" to="." method="_on_exit_pressed"]

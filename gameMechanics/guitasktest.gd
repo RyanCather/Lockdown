@@ -14,4 +14,5 @@ func _process(_delta: float) -> void:
 func _GUI_window_close() -> void:
 	self.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Global.taskMode = false
 	print("player closed minitask")

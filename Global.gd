@@ -19,11 +19,12 @@ var clipLabel : Label
 var pointsLabel : Label
 var healthLabel: Label
 var interactionLabel: Label
-
+var isPaused = false
 var myCurrentTeam : String
 
 var totalValue = 0
 
+var taskMode = false
 func updateLabels(clipAmmo, reserveAmmo):
 	clipLabel.text = str(clipAmmo)
 	reserveLabel.text = str(reserveAmmo)

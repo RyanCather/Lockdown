@@ -1,3 +1,4 @@
+#this is the wrong player node, i dont know why its still in the game but it is and i dont wanna touch it
 extends CharacterBody3D
 
 signal health_changed(health_value)

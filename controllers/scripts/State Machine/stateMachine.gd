@@ -18,7 +18,9 @@ func _ready():
 
 func _process(delta):
 	if not is_multiplayer_authority(): return
-	currentState.update(delta)
+	if Global.isPaused == false:
+		if Global.taskMode == false:
+			currentState.update(delta)
 	
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
