@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://currrrlwvf71l"]
+
+[ext_resource type="Script" uid="uid://g6ckle7n46f0" path="res://Scripts/ItemCollectionVolume.gd" id="1_b8kcc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dy61o"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b8kcc"]
+size = Vector3(4, 0.25, 4)
+
+[node name="ItemCollectionVolume" type="Node3D" unique_id=409276444]
+script = ExtResource("1_b8kcc")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1088429601]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1575671349]
+shape = SubResource("BoxShape3D_dy61o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1080447519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_b8kcc")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

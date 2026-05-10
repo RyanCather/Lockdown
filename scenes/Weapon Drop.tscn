@@ -5,6 +5,7 @@
 [ext_resource type="ArrayMesh" uid="uid://ohf0bdys7dha" path="res://Weapons/Models/Pistol/Magazine.res" id="3_vcge5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_andwr"]
+margin = 0.25
 size = Vector3(0.75, 0.75, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t26jn"]

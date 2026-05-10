@@ -81,8 +81,9 @@ func _ready() -> void:
 	Global.reserveLabel = %Reserve
 	Global.interactionLabel = %InteractionLabel
 	Global.clipLabel = %Clip
-	Global.pointsLabel = %Points
+	Global.pointsLabel = %TotalValue
 	Global.healthLabel = %Health
+	Global.totalValue = 0
 	GUI.hide()
 	print(Input.get_joy_name(0))
 

@@ -22,12 +22,14 @@ var interactionLabel: Label
 
 var myCurrentTeam : String
 
+var totalValue = 0
+
 func updateLabels(clipAmmo, reserveAmmo):
 	clipLabel.text = str(clipAmmo)
 	reserveLabel.text = str(reserveAmmo)
 
 func updatePoints():
-	pointsLabel.text = str(playerPoints)
+	pointsLabel.text = str(totalValue)
 
 func updateHealth():
 	#DEPRECATED FUNCTION but still here for old code

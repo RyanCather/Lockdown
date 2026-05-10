@@ -21,6 +21,7 @@ var returning = false
 
 #Attributes for items
 var isItemTag = false
+var loadedWeapon
 
 
 #defaultStats tells the Weapon Manager to use the files default ammo
@@ -54,7 +55,7 @@ func parseAmmo(clipAmmo, reserveAmmo):
 	reserve = reserveAmmo
 
 func setModel(weaponType):
-	var loadedWeapon = load(weaponType)
+	loadedWeapon = load(weaponType)
 	objectName = str(loadedWeapon.name)
 	weaponMesh.mesh = loadedWeapon.mesh
 	weaponMagazine.mesh = loadedWeapon.magazine
@@ -92,3 +93,7 @@ func _physics_process(_delta: float) -> void:
 	if returning:
 		var playerPosition = global_position.direction_to(Global.player.position)
 		linear_velocity += playerPosition * (position.distance_to(Global.player.position) / 16)
+
+
+func getPrice():
+	return loadedWeapon.price

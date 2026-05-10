@@ -12,6 +12,7 @@
 [ext_resource type="LabelSettings" uid="uid://ymbpk3yphr8i" path="res://controllers/materials/InteractionLabelSettings.tres" id="8_8b5ia"]
 [ext_resource type="PackedScene" uid="uid://dyf8bobfk30yv" path="res://scenes/Item pedestal.tscn" id="9_lwfgy"]
 [ext_resource type="Theme" uid="uid://b4n6esmn2elnd" path="res://controllers/Themes/PauseMenuTheme.tres" id="10_r1245"]
+[ext_resource type="PackedScene" uid="uid://currrrlwvf71l" path="res://scenes/Item Collection Volume.tscn" id="13_dbplf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5pdl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -302,7 +303,7 @@ layout_mode = 2
 text = "<null>"
 label_settings = ExtResource("7_ftq4a")
 
-[node name="Points" type="HBoxContainer" parent="UserInterface" unique_id=498307884]
+[node name="TotalValue" type="HBoxContainer" parent="UserInterface" unique_id=498307884]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -313,7 +314,7 @@ offset_right = 170.0
 offset_bottom = -171.0
 grow_vertical = 0
 
-[node name="Points" type="Label" parent="UserInterface/Points" unique_id=893519168]
+[node name="TotalValue" type="Label" parent="UserInterface/TotalValue" unique_id=893519168]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0"
@@ -359,6 +360,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Spawn Text" type="HBoxContainer" parent="UserInterface" unique_id=47292584]
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -371,7 +373,7 @@ grow_vertical = 2
 
 [node name="Spawn Label" type="Label" parent="UserInterface/Spawn Text" unique_id=38426444]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
+visible = false
 layout_mode = 2
 size_flags_horizontal = 6
 text = "TestTest"
@@ -388,9 +390,6 @@ offset_bottom = 77.0
 unique_name_in_owner = true
 layout_mode = 2
 text = "aaaawagga"
-
-[node name="ItemPedestal" parent="." unique_id=1849080789 instance=ExtResource("9_lwfgy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.567147, 0.625, -0.56337714)
 
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=957366646]
 
@@ -438,6 +437,27 @@ horizontal_alignment = 1
 [node name="Button" type="Button" parent="PauseLayer/PausePanel/PauseVbox" unique_id=2046067808]
 layout_mode = 2
 text = "Button that does nothing"
+
+[node name="ItemCollectionVolume" parent="." unique_id=409276444 instance=ExtResource("13_dbplf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.826765, 2.4615893, -0.73392963)
+
+[node name="ItemPedestal" parent="." unique_id=1849080789 instance=ExtResource("9_lwfgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.560696, 2.6249995, 7.0469966)
+
+[node name="ItemPedestal2" parent="." unique_id=1231719221 instance=ExtResource("9_lwfgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.008234, 2.624999, 10.674433)
+
+[node name="ItemPedestal3" parent="." unique_id=1117779505 instance=ExtResource("9_lwfgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.990599, 2.6249995, 12.220156)
+
+[node name="ItemPedestal4" parent="." unique_id=512494851 instance=ExtResource("9_lwfgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.585321, 2.6249995, 8.144159)
+
+[node name="ItemPedestal5" parent="." unique_id=1140641617 instance=ExtResource("9_lwfgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.093616, 2.6249995, 10.619704)
+
+[node name="ItemPedestal6" parent="." unique_id=1155773454 instance=ExtResource("9_lwfgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.676233, 2.624999, 5.9977307)
 
 [connection signal="body_entered" from="InteractableTest/Area3D" to="." method="_GUI_window_open"]
 [connection signal="close_requested" from="GUItasktest" to="GUItasktest" method="_GUI_window_close"]

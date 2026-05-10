@@ -4,9 +4,8 @@ extends Node3D
 var rng = RandomNumberGenerator.new()
 var weaponDrop = preload("res://scenes/Weapon Drop.tscn")
 var itemPaths = [
-	"res://Weapons/Blaster.tres",
-	"res://Weapons/Revolver.tres"
-	
+	"res://Weapons/Items/Goldbar.tres",
+	"res://Weapons/Items/Gem.tres"
 ]
 
 

@@ -53,7 +53,7 @@ func _ready() -> void:
 	if not is_multiplayer_authority(): return
 	Global.weaponManager = self
 	loadWeapon()
-	addWeapon("res://Weapons/Revolver.tres", true, 0, 0)
+	addWeapon("res://Weapons/Blaster.tres", true, 0, 0)
 	
 	#Checks if the player has spawned before, thus not giving new equipment
 	#Might not be needed
@@ -170,7 +170,7 @@ func loadWeapon():
 	
 	#Checks if the projectile based weapon has a scene, otherwise skips loading it
 	if !Engine.is_editor_hint():
-		if weaponType.bulletScene != "":
+		if weaponType.bulletScene != "" or weaponType.bulletScene != "<null>":
 			weaponGlobal.weaponBulletScene = load(weaponType.bulletScene)
 	
 	#Gun Orientation
@@ -225,7 +225,7 @@ func loadWeapon():
 		weaponGlobal.verticalRecoil = weaponType.verticalRecoil
 		weaponGlobal.horizontalRecoil = weaponType.horizontalRecoil
 		Global.rpc("replicateSpecificObject", str(get_path()), "replicateWeaponVisual", weaponGlobal.weaponInventory[weaponGlobal.currentWeaponIndex])
-		
+		apply_clip_and_fov_shader_to_view_model(self, -1.0)
 		
 
 #Controls the sway of the weapon given the values from the loaded weapon
@@ -481,9 +481,6 @@ func replicateWeaponVisual(weaponPath):
 	weaponBolt.mesh = replicatedWeapon.bolt
 	weaponShadow.mesh = replicatedWeapon.mesh
 
-
-
-
 #This function is for adding ammo to the player, such as a ammo pickup
 func addAmmo(clipAdd, reserveAdd):
 	#Method of adding ammo
@@ -501,7 +498,34 @@ func addAmmo(clipAdd, reserveAdd):
 	Global.clipLabel.text = str(weaponGlobal.clipAmmo)
 	Global.reserveLabel.text = str(weaponGlobal.reserveAmmo)
 
-
+#Applys shader to prevent weapon clipping
+func apply_clip_and_fov_shader_to_view_model(node3d : Node3D, fov_or_negative_for_unchanged = -1.0):
+	var all_mesh_instances = node3d.find_children("*", "MeshInstance3D")
+	if node3d is MeshInstance3D:
+		all_mesh_instances.push_back(node3d)
+	for mesh_instance in all_mesh_instances:
+		var mesh = mesh_instance.mesh
+		# Important to turn shadow casting off for view model or will cause issues with both
+		# view model, casting shadows on itself once unclipped, & also will look weird casting on world.
+		mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		if mesh != null:
+			for surface_idx in mesh.get_surface_count():
+				var base_mat = mesh.surface_get_material(surface_idx)
+				if not base_mat is BaseMaterial3D: continue
+				var weapon_shader_material := ShaderMaterial.new()
+				weapon_shader_material.shader = load("res://shaders/weaponClip.gdshader")
+				weapon_shader_material.set_shader_parameter("texture_albedo", base_mat.albedo_texture)
+				weapon_shader_material.set_shader_parameter("texture_metallic", base_mat.metallic_texture)
+				weapon_shader_material.set_shader_parameter("texture_roughness", base_mat.roughness_texture)
+				weapon_shader_material.set_shader_parameter("texture_normal", base_mat.normal_texture)
+				weapon_shader_material.set_shader_parameter("albedo", base_mat.albedo_color)
+				weapon_shader_material.set_shader_parameter("metallic", base_mat.metallic)
+				weapon_shader_material.set_shader_parameter("specular", base_mat.metallic_specular)
+				weapon_shader_material.set_shader_parameter("roughness", base_mat.roughness)
+				weapon_shader_material.set_shader_parameter("viewmodel_fov", fov_or_negative_for_unchanged)
+				var tex_channels = { 0: Vector4(1., 0., 0., 0.), 1: Vector4(0., 1., 0., 0.), 2: Vector4(0., 0., 1., 0.), 3: Vector4(1., 0., 0., 1.), 4: Vector4() }
+				weapon_shader_material.set_shader_parameter("metallic_texture_channel", tex_channels[base_mat.metallic_texture_channel])
+				mesh_instance.set_surface_override_material(surface_idx, weapon_shader_material)
 
 #func _physics_process(delta) -> void:
 
