@@ -7,7 +7,7 @@ extends Node2D
 
 
 func _ready():
-	#Chatbox.hide() Doesnt work right now. Working on a fix. 
+	#Chatbox.hide() #Doesnt work right now. Working on a fix. 
 	Send.pressed.connect(_on_send_pressed)
 
 
