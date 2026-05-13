@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://c8oqxmm2w2wvv"]
 
+
 [ext_resource type="Script" uid="uid://demmf2hbrwaat" path="res://Scripts/lobby.gd" id="1_ctiuy"]
 [ext_resource type="PackedScene" uid="uid://c1j7an8woikyd" path="res://Scenes/environment.tscn" id="2_fr3vy"]
 [ext_resource type="AudioStream" uid="uid://dbwy7vdmgmifi" path="res://Scenes/starostin-crime-heist-investigation-music-259668.mp3" id="3_8b5ia"]
-[ext_resource type="Script" uid="uid://cw5iw0tdrx43u" path="res://gameMechanics/guitasktest.gd" id="3_ftq4a"]
+[ext_resource type="Script" uid="uid://cw5iw0tdrx43u" path="res://gameMechanics/guiwindow.gd" id="3_ftq4a"]
 [ext_resource type="PackedScene" uid="uid://5k1o5ctvtah6" path="res://Scenes/enemy.tscn" id="3_nule3"]
+
+
 [ext_resource type="Script" uid="uid://da4bqfupciool" path="res://controllers/reticle.gd" id="4_0ddhe"]
 [ext_resource type="Theme" uid="uid://de2nek577lf7m" path="res://controllers/Themes/UI/Debug.tres" id="5_lwfgy"]
 [ext_resource type="Script" uid="uid://dvspsmhr73myh" path="res://controllers/scripts/debug_panel.gd" id="6_r1245"]
@@ -77,7 +80,7 @@ material = SubResource("StandardMaterial3D_r1245")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableTest/Area3D" unique_id=1640450757]
 shape = SubResource("BoxShape3D_ftq4a")
 
-[node name="GUItasktest" type="Window" parent="." unique_id=830631381]
+[node name="GUIwindow" type="Window" parent="." unique_id=830631381]
 unique_name_in_owner = true
 oversampling_override = 1.0
 title = "Minitask test"
@@ -89,9 +92,9 @@ transient_to_focused = true
 exclusive = true
 script = ExtResource("3_ftq4a")
 
-[node name="GUI" type="CanvasLayer" parent="GUItasktest" unique_id=183574257]
+[node name="GUI" type="CanvasLayer" parent="GUIwindow" unique_id=183574257]
 
-[node name="Panel" type="Panel" parent="GUItasktest/GUI" unique_id=923370294]
+[node name="Panel" type="Panel" parent="GUIwindow/GUI" unique_id=923370294]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -100,7 +103,7 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="GUItasktest/GUI/Panel" unique_id=1071161576]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GUIwindow/GUI/Panel" unique_id=1071161576]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,7 +114,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="GUItasktest/GUI/Panel/SubViewportContainer" unique_id=1617212057]
+[node name="SubViewport" type="SubViewport" parent="GUIwindow/GUI/Panel/SubViewportContainer" unique_id=1617212057]
 unique_name_in_owner = true
 handle_input_locally = false
 size = Vector2i(900, 500)
@@ -119,7 +122,7 @@ size_2d_override = Vector2i(1150, 650)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="GUItasktest" unique_id=144988928]
+[node name="Camera3D" type="Camera3D" parent="GUIwindow" unique_id=144988928]
 transform = Transform3D(0.6735674, 0, -0.7391258, 0, 1, 0, 0.7391258, 0, 0.6735674, 1.9815508, 1.2883507, -3.0262659)
 visible = false
 visibility_parent = NodePath("../../InteractableTest")
@@ -196,7 +199,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.373262, 2, 0)
 [node name="Marker3D" type="Marker3D" parent="SpawnPoints2/Cops" unique_id=106706201]
 transform = Transform3D(0.2774824, 0, 0.96073073, 0, 1, 0, -0.96073073, 0, 0.2774824, 0, 0, 0)
 
-[node name="SpawnPoints" type="MultiplayerSpawner" parent="." unique_id=657898112]
+[node name="SpawnPoints" type="MultiplayerSpawner" parent="." unique_id=559373657]
+
 _spawnable_scenes = PackedStringArray("uid://c3ffql15mo0aj")
 spawn_path = NodePath("..")
 
@@ -461,11 +465,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.093616, 2.6249995, 10.6197
 [node name="ItemPedestal6" parent="." unique_id=1155773454 instance=ExtResource("9_lwfgy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.676233, 2.624999, 5.9977307)
 
+
 [connection signal="body_entered" from="InteractableTest/Area3D" to="." method="_GUI_window_open"]
-[connection signal="close_requested" from="GUItasktest" to="GUItasktest" method="_GUI_window_close"]
+[connection signal="close_requested" from="GUIwindow" to="GUIwindow" method="_GUI_window_close"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/SinglePlayer" to="." method="_on_single_player_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/GUItest" to="." method="_on_guitasktest_pressed"]
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
 [connection signal="spawned" from="SpawnPoints" to="." method="_on_multiplayer_spawner_spawned"]
