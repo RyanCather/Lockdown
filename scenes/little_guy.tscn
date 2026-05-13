@@ -6,8 +6,9 @@
 diffuse_mode = 3
 specular_mode = 1
 albedo_texture = ExtResource("1_qctxp")
-metallic = 0.75
-roughness = 0.08
+metallic = 0.88
+metallic_specular = 0.79
+roughness = 0.06
 rim_enabled = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_g7rxx"]
