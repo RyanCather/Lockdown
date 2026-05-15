@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bt2yh3giqbjo7"]
+
+[node name="Debug" type="Control" unique_id=1754011149]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Window" type="Window" parent="." unique_id=1405924908]
+oversampling_override = 1.0
+position = Vector2i(526, 274)

@@ -2,7 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c1wvmwqpcdne2" path="res://gameMechanics/hacking_minitask.gd" id="1_a4q0h"]
 [ext_resource type="Script" uid="uid://dsux2ll1dtpqb" path="res://gameMechanics/2d_player.gd" id="2_7x3vr"]
+[ext_resource type="Texture2D" path="/home/cindysayer/Downloads/Lockdown-main/icon.svg" id="4_2dyur"]
 [ext_resource type="Texture2D" uid="uid://buvxdbhao4n7y" path="res://icon.svg" id="4_vim1e"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vim1e"]
+blend_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qc5cr"]
 radius = 50.219517
@@ -11,57 +15,118 @@ radius = 50.219517
 bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dyur"]
-size = Vector2(20, 4.0603247)
+size = Vector2(21.830807, 2.9582381)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vim1e"]
 size = Vector2(62.000008, 667.0001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owrb1"]
+size = Vector2(136.00009, 521.0001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5g3y"]
+size = Vector2(126.00043, 362.00018)
 
 [node name="Hacking Minitask" type="Node2D" unique_id=624052591]
 script = ExtResource("1_a4q0h")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1415991992]
+visible = false
 offset_left = -79.0
 offset_top = -101.0
 offset_right = 1209.0
-offset_bottom = 640.0
+offset_bottom = 699.0
 texture = ExtResource("4_vim1e")
 
+[node name="reward" type="Node2D" parent="." unique_id=729839377]
+position = Vector2(749, 240)
+
+[node name="Sprite2D" type="Sprite2D" parent="reward" unique_id=1451546102]
+material = SubResource("CanvasItemMaterial_vim1e")
+position = Vector2(2, 3)
+scale = Vector2(0.3046875, 0.28125)
+texture = ExtResource("4_2dyur")
+
 [node name="2DPlayer" type="CharacterBody2D" parent="." unique_id=831064467]
-position = Vector2(156, 443)
+position = Vector2(112, 549)
 script = ExtResource("2_7x3vr")
 
 [node name="Sprite2D" type="Sprite2D" parent="2DPlayer" unique_id=1027031352]
+position = Vector2(0, -1)
 texture = ExtResource("4_vim1e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DPlayer" unique_id=298103553]
+position = Vector2(-3, -3)
 shape = SubResource("CircleShape2D_qc5cr")
 one_way_collision = true
 debug_color = Color(0.562364, 0.5594716, 0, 0.41960785)
 
-[node name="Floor" type="StaticBody2D" parent="." unique_id=1635634473]
-position = Vector2(547, 510)
+[node name="Barriers" type="StaticBody2D" parent="." unique_id=1635634473]
+position = Vector2(545.00006, 508.00006)
 scale = Vector2(1152.5, 646.49994)
 physics_material_override = SubResource("PhysicsMaterial_vim1e")
 
-[node name="Sprite2D" type="Sprite2D" parent="Floor" unique_id=332535105]
-position = Vector2(0.029501067, 0.15467906)
-scale = Vector2(0.0079514645, 0.0015467904)
-texture = ExtResource("4_vim1e")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1266184854]
-position = Vector2(0.026898036, 0.15777266)
-scale = Vector2(0.049999997, 0.049999997)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers" unique_id=1266184854]
+position = Vector2(0.018221267, 0.28306267)
+scale = Vector2(0.049999993, 0.049999993)
 shape = SubResource("RectangleShape2D_2dyur")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Barriers" unique_id=1060844130]
+position = Vector2(0.013015181, -0.8538283)
+scale = Vector2(0.049999982, 0.049999993)
+shape = SubResource("RectangleShape2D_2dyur")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Barriers" unique_id=1390641286]
+position = Vector2(-0.49718, -0.27842236)
+scale = Vector2(0.00086767867, 0.00154679)
+shape = SubResource("RectangleShape2D_vim1e")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Barriers" unique_id=1282106713]
+position = Vector2(0.5483731, -0.27068835)
+scale = Vector2(0.00086767867, 0.0015467901)
+shape = SubResource("RectangleShape2D_vim1e")
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=453193021]
 scale = Vector2(0.99999994, 0.99999994)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" unique_id=1390641286]
-position = Vector2(-20.00003, 333)
-scale = Vector2(0.9999998, 0.9999998)
-shape = SubResource("RectangleShape2D_vim1e")
+[node name="Sprite2D" type="Sprite2D" parent="Walls" unique_id=210127730]
+position = Vector2(300, 427.50003)
+scale = Vector2(0.9999999, 4.0078125)
+texture = ExtResource("4_2dyur")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls" unique_id=1282106713]
-position = Vector2(1176, 336)
-scale = Vector2(0.9999998, 0.9999998)
-shape = SubResource("RectangleShape2D_vim1e")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" unique_id=570015604]
+position = Vector2(297.9999, 422.4999)
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_owrb1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Walls" unique_id=1886863735]
+position = Vector2(566.00006, 213.00002)
+scale = Vector2(0.9999999, 4.0078125)
+texture = ExtResource("4_2dyur")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls" unique_id=1050014693]
+position = Vector2(565, 219)
+scale = Vector2(0.9999992, 0.9999992)
+shape = SubResource("RectangleShape2D_owrb1")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Walls" unique_id=1432695066]
+position = Vector2(757.00006, 425.00003)
+rotation = -1.5653714
+scale = Vector2(0.9999999, 4.0078125)
+texture = ExtResource("4_2dyur")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls" unique_id=1321839622]
+position = Vector2(757.00006, 425.00003)
+rotation = -1.5643806
+scale = Vector2(0.99999833, 0.99999833)
+shape = SubResource("RectangleShape2D_owrb1")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Walls" unique_id=1213747607]
+position = Vector2(949.908, 304.33456)
+rotation = -3.1439736
+scale = Vector2(0.9999999, 2.8374693)
+texture = ExtResource("4_2dyur")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls" unique_id=1878366025]
+position = Vector2(949.99963, 304.99994)
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("RectangleShape2D_g5g3y")

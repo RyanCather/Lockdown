@@ -5,12 +5,15 @@ extends Resource
 @export var name : StringName
 @export_category("Shooting and Ammo")
 @export var Damage = 20
-@export var weight = 1 #Changes thrown weapon damage multiplier
+##Changes thrown weapon damage multiplier
+@export var weight = 1 
 @export var clip = 8
 @export var maxClip = 8
 @export var reserve = 32
 @export var maxReserve = 80
 @export var rpm = 450
+##Price of the object
+@export var price = 0
 ##Accuracy of 0 means perfect accuracy, higher is more inaccurate
 @export var Accuracy : float = 0
 @export var melee : bool = false
@@ -22,7 +25,7 @@ extends Resource
 @export var shotgun : bool = false
 @export_enum("Magazine", "Shell") var reloadMode: String = "Magazine"
 @export_enum("Semi", "Auto", "Bolt") var fireMode: String = "Semi"
-@export_enum("Projectile", "Hitscan") var bulletPhysics: String = "Projectile"
+@export_enum("Projectile", "Hitscan") var bulletPhysics: String = "Hitscan"
 @export_file("*.tscn") var bulletScene 
 
 @export_category("Weapon Orientation")

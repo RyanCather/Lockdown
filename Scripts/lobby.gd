@@ -11,7 +11,6 @@ extends Node
 
 @onready var Player = preload("res://controllers/fps_controller.tscn")
 #@onready var Player = $Player
-
 @onready var cop_spawns = $SpawnPoints2/Cops.get_children()
 @onready var robber_spawns = $SpawnPoints2/Robber.get_children()
 
@@ -22,7 +21,7 @@ var teams = {} # peer_id -> "Cop" or "Robber"
 var playercount = 0
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
-
+var debWin = preload("res://scenes/Debug.tscn")
 
 func _on_host_button_pressed():
 
@@ -43,8 +42,12 @@ func _on_join_button_pressed():
 	main_menu.hide()
 	hud.show()
 	if playercount < 4:
-		enet_peer.create_client(address_entry.text, PORT)
-		multiplayer.multiplayer_peer = enet_peer
+		if address_entry.text == "":
+			enet_peer.create_client("127.0.0.1", PORT)
+			multiplayer.multiplayer_peer = enet_peer
+		else:
+			enet_peer.create_client(address_entry.text, PORT)
+			multiplayer.multiplayer_peer = enet_peer
 	else:
 		print("TOO MANY PLAYERS!")
 
@@ -75,10 +78,15 @@ func _ready() -> void:
 	Global.reserveLabel = %Reserve
 	Global.interactionLabel = %InteractionLabel
 	Global.clipLabel = %Clip
-	Global.pointsLabel = %Points
+	Global.pointsLabel = %TotalValue
 	Global.healthLabel = %Health
+	Global.totalValue = 0
 	GUI.hide()
 	print(Input.get_joy_name(0))
+	get_viewport().set_embedding_subwindows(false)
+	var DebugPanel = debWin.instantiate() #gonna be honest ive got no clue what this means
+	add_child(DebugPanel)
+	DebugPanel.visible = true
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit"):

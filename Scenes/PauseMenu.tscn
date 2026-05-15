@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://y5rygoea2su0"]
+
+[ext_resource type="Texture2D" uid="uid://buvxdbhao4n7y" path="res://icon.svg" id="1_jvnd5"]
+
+[node name="PauseMenu" type="Node2D" unique_id=1503740173]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1051734290]
+position = Vector2(222, 150.5)
+scale = Vector2(2.375, 0.5078125)
+texture = ExtResource("1_jvnd5")
+
+[node name="Label" type="Label" parent="." unique_id=1277396826]
+offset_left = 425.0
+offset_top = 279.0
+offset_right = 518.0
+offset_bottom = 302.0
+text = "aaaaaaaaaa"

@@ -2,11 +2,12 @@ extends Node3D
 
 @onready var dropLocation = $"Item Spawn Location"
 var rng = RandomNumberGenerator.new()
-var weaponDrop = preload("res://scenes/Weapon Drop.tscn")
+var weaponDrop = preload("res://Scenes/Weapon Drop.tscn")
 var itemPaths = [
-	"res://Weapons/Blaster.tres",
-	"res://Weapons/Revolver.tres"
-	
+"res://Items/Item Files/Gem.tres",
+"res://Items/Item Files/Goldbar.tres",
+"res://Items/Item Files/Painting.tres"
+
 ]
 
 
@@ -17,7 +18,7 @@ func _ready() -> void:
 
 func spawnItem():
 	var dropInstance = weaponDrop.instantiate()
-	get_tree().get_root().add_child(dropInstance)
+	get_tree().root.get_node("World").add_child(dropInstance)
 	var loadedItem = itemPaths[rng.randi_range(0, itemPaths.size()-1)]
 	dropInstance.global_position = dropLocation.global_position
 	dropInstance.setWeapon(loadedItem)

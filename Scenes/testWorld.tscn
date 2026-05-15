@@ -1,17 +1,21 @@
 [gd_scene format=3 uid="uid://c8oqxmm2w2wvv"]
 
-[ext_resource type="Script" uid="uid://demmf2hbrwaat" path="res://scenes/world.gd" id="1_ctiuy"]
-[ext_resource type="PackedScene" uid="uid://c1j7an8woikyd" path="res://scenes/environment.tscn" id="2_fr3vy"]
-[ext_resource type="AudioStream" uid="uid://dbwy7vdmgmifi" path="res://scenes/starostin-crime-heist-investigation-music-259668.mp3" id="3_8b5ia"]
-[ext_resource type="Script" uid="uid://cw5iw0tdrx43u" path="res://gameMechanics/guitasktest.gd" id="3_ftq4a"]
-[ext_resource type="PackedScene" uid="uid://5k1o5ctvtah6" path="res://scenes/enemy.tscn" id="3_nule3"]
+
+[ext_resource type="Script" uid="uid://demmf2hbrwaat" path="res://Scripts/lobby.gd" id="1_ctiuy"]
+[ext_resource type="PackedScene" uid="uid://c1j7an8woikyd" path="res://Scenes/environment.tscn" id="2_fr3vy"]
+[ext_resource type="AudioStream" uid="uid://dbwy7vdmgmifi" path="res://Scenes/starostin-crime-heist-investigation-music-259668.mp3" id="3_8b5ia"]
+[ext_resource type="Script" uid="uid://cw5iw0tdrx43u" path="res://gameMechanics/guiwindow.gd" id="3_ftq4a"]
+[ext_resource type="PackedScene" uid="uid://5k1o5ctvtah6" path="res://Scenes/enemy.tscn" id="3_nule3"]
+
+
 [ext_resource type="Script" uid="uid://da4bqfupciool" path="res://controllers/reticle.gd" id="4_0ddhe"]
 [ext_resource type="Theme" uid="uid://de2nek577lf7m" path="res://controllers/Themes/UI/Debug.tres" id="5_lwfgy"]
 [ext_resource type="Script" uid="uid://dvspsmhr73myh" path="res://controllers/scripts/debug_panel.gd" id="6_r1245"]
 [ext_resource type="LabelSettings" uid="uid://dskxen8j6183q" path="res://controllers/materials/Ammo Counter Label Settings.tres" id="7_ftq4a"]
 [ext_resource type="LabelSettings" uid="uid://ymbpk3yphr8i" path="res://controllers/materials/InteractionLabelSettings.tres" id="8_8b5ia"]
-[ext_resource type="PackedScene" uid="uid://dyf8bobfk30yv" path="res://scenes/Item pedestal.tscn" id="9_lwfgy"]
+[ext_resource type="PackedScene" uid="uid://dyf8bobfk30yv" path="res://Scenes/Item pedestal.tscn" id="9_lwfgy"]
 [ext_resource type="Theme" uid="uid://b4n6esmn2elnd" path="res://controllers/Themes/PauseMenuTheme.tres" id="10_r1245"]
+[ext_resource type="PackedScene" uid="uid://currrrlwvf71l" path="res://Scenes/Item Collection Volume.tscn" id="13_dbplf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5pdl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -76,21 +80,20 @@ material = SubResource("StandardMaterial3D_r1245")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableTest/Area3D" unique_id=1640450757]
 shape = SubResource("BoxShape3D_ftq4a")
 
-[node name="GUItasktest" type="Window" parent="." unique_id=830631381]
+[node name="GUIwindow" type="Window" parent="." unique_id=830631381]
 unique_name_in_owner = true
 oversampling_override = 1.0
 title = "Minitask test"
 initial_position = 2
 size = Vector2i(900, 500)
-visible = false
-transient = true
 transient_to_focused = true
 exclusive = true
+force_native = true
 script = ExtResource("3_ftq4a")
 
-[node name="GUI" type="CanvasLayer" parent="GUItasktest" unique_id=183574257]
+[node name="GUI" type="CanvasLayer" parent="GUIwindow" unique_id=183574257]
 
-[node name="Panel" type="Panel" parent="GUItasktest/GUI" unique_id=923370294]
+[node name="Panel" type="Panel" parent="GUIwindow/GUI" unique_id=923370294]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -99,7 +102,7 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="GUItasktest/GUI/Panel" unique_id=1071161576]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GUIwindow/GUI/Panel" unique_id=1071161576]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,7 +113,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="GUItasktest/GUI/Panel/SubViewportContainer" unique_id=1617212057]
+[node name="SubViewport" type="SubViewport" parent="GUIwindow/GUI/Panel/SubViewportContainer" unique_id=1617212057]
 unique_name_in_owner = true
 handle_input_locally = false
 size = Vector2i(900, 500)
@@ -118,7 +121,7 @@ size_2d_override = Vector2i(1150, 650)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="GUItasktest" unique_id=144988928]
+[node name="Camera3D" type="Camera3D" parent="GUIwindow" unique_id=144988928]
 transform = Transform3D(0.6735674, 0, -0.7391258, 0, 1, 0, 0.7391258, 0, 0.6735674, 1.9815508, 1.2883507, -3.0262659)
 visible = false
 visibility_parent = NodePath("../../InteractableTest")
@@ -195,7 +198,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.373262, 2, 0)
 [node name="Marker3D" type="Marker3D" parent="SpawnPoints2/Cops" unique_id=106706201]
 transform = Transform3D(0.2774824, 0, 0.96073073, 0, 1, 0, -0.96073073, 0, 0.2774824, 0, 0, 0)
 
-[node name="SpawnPoints" type="MultiplayerSpawner" parent="." unique_id=657898112]
+[node name="SpawnPoints" type="MultiplayerSpawner" parent="." unique_id=559373657]
+
 _spawnable_scenes = PackedStringArray("uid://c3ffql15mo0aj")
 spawn_path = NodePath("..")
 
@@ -205,7 +209,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00742, 1.03476, 0.74423)
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1849368165]
 navigation_mesh = SubResource("NavigationMesh_rmptm")
 
-[node name="Environment" parent="NavigationRegion3D" unique_id=332111882 instance=ExtResource("2_fr3vy")]
+[node name="Environment" parent="NavigationRegion3D" unique_id=1851466389 instance=ExtResource("2_fr3vy")]
 
 [node name="UserInterface" type="Control" parent="." unique_id=499654013]
 unique_name_in_owner = true
@@ -254,9 +258,14 @@ position = Vector2(20, 20)
 points = PackedVector2Array(-5, 0, -15, 0)
 width = 2.0
 
-[node name="DebugPanel" type="PanelContainer" parent="UserInterface" unique_id=1280980184]
+[node name="DebugWindow" type="Window" parent="UserInterface" unique_id=651005666]
+oversampling_override = 1.0
+initial_position = 3
+current_screen = 0
+popup_window = true
+
+[node name="DebugPanel" type="PanelContainer" parent="UserInterface/DebugWindow" unique_id=1280980184]
 custom_minimum_size = Vector2(200, 0)
-layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 210.0
@@ -264,10 +273,10 @@ offset_bottom = 50.0
 theme = ExtResource("5_lwfgy")
 script = ExtResource("6_r1245")
 
-[node name="MarginContainer" type="MarginContainer" parent="UserInterface/DebugPanel" unique_id=1271961410]
+[node name="MarginContainer" type="MarginContainer" parent="UserInterface/DebugWindow/DebugPanel" unique_id=1271961410]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UserInterface/DebugPanel/MarginContainer" unique_id=2032843885]
+[node name="VBoxContainer" type="VBoxContainer" parent="UserInterface/DebugWindow/DebugPanel/MarginContainer" unique_id=2032843885]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -303,7 +312,7 @@ layout_mode = 2
 text = "<null>"
 label_settings = ExtResource("7_ftq4a")
 
-[node name="Points" type="HBoxContainer" parent="UserInterface" unique_id=498307884]
+[node name="TotalValue" type="HBoxContainer" parent="UserInterface" unique_id=498307884]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -314,7 +323,7 @@ offset_right = 170.0
 offset_bottom = -171.0
 grow_vertical = 0
 
-[node name="Points" type="Label" parent="UserInterface/Points" unique_id=893519168]
+[node name="TotalValue" type="Label" parent="UserInterface/TotalValue" unique_id=893519168]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0"
@@ -360,6 +369,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Spawn Text" type="HBoxContainer" parent="UserInterface" unique_id=47292584]
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -372,7 +382,7 @@ grow_vertical = 2
 
 [node name="Spawn Label" type="Label" parent="UserInterface/Spawn Text" unique_id=38426444]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
+visible = false
 layout_mode = 2
 size_flags_horizontal = 6
 text = "TestTest"
@@ -389,9 +399,6 @@ offset_bottom = 77.0
 unique_name_in_owner = true
 layout_mode = 2
 text = "aaaawagga"
-
-[node name="ItemPedestal" parent="." unique_id=1849080789 instance=ExtResource("9_lwfgy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.567147, 0.625, -0.56337714)
 
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=957366646]
 visible = false
@@ -441,11 +448,32 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Button that does nothing"
 
+[node name="ItemCollectionVolume" parent="." unique_id=409276444 instance=ExtResource("13_dbplf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.826765, 2.4615893, -0.73392963)
+
+[node name="ItemPedestal" parent="." unique_id=1849080789 instance=ExtResource("9_lwfgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.560696, 2.6249995, 7.0469966)
+
+[node name="ItemPedestal2" parent="." unique_id=1231719221 instance=ExtResource("9_lwfgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.008234, 2.624999, 10.674433)
+
+[node name="ItemPedestal3" parent="." unique_id=1117779505 instance=ExtResource("9_lwfgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.990599, 2.6249995, 12.220156)
+
+[node name="ItemPedestal4" parent="." unique_id=512494851 instance=ExtResource("9_lwfgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.585321, 2.6249995, 8.144159)
+
+[node name="ItemPedestal5" parent="." unique_id=1140641617 instance=ExtResource("9_lwfgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.093616, 2.6249995, 10.619704)
+
+[node name="ItemPedestal6" parent="." unique_id=1155773454 instance=ExtResource("9_lwfgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.676233, 2.624999, 5.9977307)
+
+
 [connection signal="body_entered" from="InteractableTest/Area3D" to="." method="_GUI_window_open"]
-[connection signal="close_requested" from="GUItasktest" to="GUItasktest" method="_GUI_window_close"]
+[connection signal="close_requested" from="GUIwindow" to="GUIwindow" method="_GUI_window_close"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/SinglePlayer" to="." method="_on_single_player_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/GUItest" to="." method="_on_guitasktest_pressed"]
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
 [connection signal="spawned" from="SpawnPoints" to="." method="_on_multiplayer_spawner_spawned"]
