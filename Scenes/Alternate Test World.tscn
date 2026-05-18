@@ -147,8 +147,6 @@ transform = Transform3D(0.6735674, 0, -0.7391258, 0, 1, 0, 0.7391258, 0, 0.67356
 visible = false
 visibility_parent = NodePath("../../InteractableTest")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1971673780]
-
 [node name="SpawnPoints2" type="Node3D" parent="." unique_id=863307615]
 
 [node name="Robber" type="Node3D" parent="SpawnPoints2" unique_id=2060114088]
@@ -466,5 +464,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.676233, 2.624999, 5.997730
 
 [connection signal="body_entered" from="InteractableTest/Area3D" to="." method="_GUI_window_open"]
 [connection signal="close_requested" from="GUIwindow" to="GUIwindow" method="_GUI_window_close"]
-[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
 [connection signal="spawned" from="SpawnPoints" to="." method="_on_multiplayer_spawner_spawned"]

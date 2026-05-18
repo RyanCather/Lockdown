@@ -44,7 +44,7 @@ func _physics_process(delta):
 		#get_tree().call_group("enemy", "update_target_location", player.global_transform.origin)
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Global.reserveLabel = %Reserve
 	Global.interactionLabel = %InteractionLabel
 	Global.clipLabel = %Clip
@@ -82,6 +82,7 @@ func add_player(peer_id):
 func removeplayercount():
 	playercount -= 1 #removes player from playercount
 	print ("playercount is " + str(playercount)) #prints that
+	
 func remove_player(peer_id):
 	player = get_node_or_null(str(peer_id))
 	if player:

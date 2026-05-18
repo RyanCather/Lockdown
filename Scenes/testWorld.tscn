@@ -178,8 +178,6 @@ text = "GUI minitask scene test"
 stream = ExtResource("3_8b5ia")
 autoplay = true
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1971673780]
-
 [node name="SpawnPoints2" type="Node3D" parent="." unique_id=863307615]
 
 [node name="Robber" type="Node3D" parent="SpawnPoints2" unique_id=2060114088]
@@ -470,5 +468,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.676233, 2.624999, 5.997730
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/SinglePlayer" to="." method="_on_single_player_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
-[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
 [connection signal="spawned" from="SpawnPoints" to="." method="_on_multiplayer_spawner_spawned"]

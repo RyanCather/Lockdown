@@ -63,11 +63,13 @@ func replicateSpecificObject(bodyName, function, arg1):
 		object.call(function, arg1)
 	else:
 		object.call(function)
-	
+
+@rpc("reliable", "any_peer")
 func changeScene(sceneString):
 	var players = get_tree().get_nodes_in_group("player")
 	for i in players:
 		i.reparent(get_tree().root, false)
+	get_tree().root.get_node("World/SpawnPoints").reparent(get_tree().root, false)
 	
 	get_tree().change_scene_to_file(sceneString)
 	await get_tree().process_frame
@@ -77,6 +79,7 @@ func changeScene(sceneString):
 	
 	for o in players:
 		o.reparent(get_tree().root.get_node("World"), false)
+	
 	#Recursivley gather all players and move them to root node
 	#Change Scene
 	#Move them back in
