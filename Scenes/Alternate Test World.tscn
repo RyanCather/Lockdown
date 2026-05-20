@@ -108,8 +108,6 @@ oversampling_override = 1.0
 title = "Minitask test"
 initial_position = 2
 size = Vector2i(900, 500)
-visible = false
-transient = true
 transient_to_focused = true
 exclusive = true
 script = ExtResource("2_pfehb")
@@ -148,8 +146,6 @@ render_target_update_mode = 4
 transform = Transform3D(0.6735674, 0, -0.7391258, 0, 1, 0, 0.7391258, 0, 0.6735674, 1.9815508, 1.2883507, -3.0262659)
 visible = false
 visibility_parent = NodePath("../../InteractableTest")
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1971673780]
 
 [node name="SpawnPoints2" type="Node3D" parent="." unique_id=863307615]
 

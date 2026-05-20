@@ -83,6 +83,11 @@ func _ready() -> void:
 	Global.totalValue = 0
 	GUI.hide()
 	print(Input.get_joy_name(0))
+	get_viewport().set_embedding_subwindows(false)
+	
+	#var DebugPanel = debWin.instantiate()
+	#add_child(DebugPanel)
+	#DebugPanel.visible = true
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit"):
@@ -212,6 +217,19 @@ var minitask = preload("res://gameMechanics/hacking_minitask.tscn").instantiate(
 var active_instance: Node = null
 
 func _GUI_window_open(_body: Player) -> void:
+	var minitask = preload("res://gameMechanics/hacking_minitask.tscn").instantiate()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # Release mouse
+	Global.taskMode = true
+	GUI.show()
+	GUI_viewport.add_child(minitask)
+	print("player interacted with minitask")
+	if GUI_window != null:
+		GUI_window.emit_signal("close_requested")
+		Global.taskMode = false
+
+
+func _on_Quit_button_pressed() -> void:
+	get_tree().quit()
 	if _body.is_multiplayer_authority():
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # Release mouse
 		Global.taskMode = true
