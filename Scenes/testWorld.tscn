@@ -12,6 +12,7 @@
 [ext_resource type="LabelSettings" uid="uid://ymbpk3yphr8i" path="res://controllers/materials/InteractionLabelSettings.tres" id="8_8b5ia"]
 [ext_resource type="PackedScene" uid="uid://dyf8bobfk30yv" path="res://Scenes/Item pedestal.tscn" id="9_lwfgy"]
 [ext_resource type="PackedScene" uid="uid://currrrlwvf71l" path="res://Scenes/Item Collection Volume.tscn" id="13_dbplf"]
+[ext_resource type="PackedScene" uid="uid://1gk8wgub7vvt" path="res://Scenes/chatbox.tscn" id="14_0roqs"]
 [ext_resource type="PackedScene" uid="uid://b8crchnkrw0ss" path="res://gameMechanics/Traps/DeathCube.tscn" id="14_0roqs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5pdl"]
@@ -455,6 +456,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.093616, 2.6249995, 10.6197
 [node name="ItemPedestal6" parent="." unique_id=1155773454 instance=ExtResource("9_lwfgy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.676233, 2.624999, 5.9977307)
 
+[node name="chatbox" parent="." unique_id=18944203 instance=ExtResource("14_0roqs")]
+position = Vector2(-118, 251)
 [node name="DeathCube" parent="." unique_id=145201229 instance=ExtResource("14_0roqs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.254775, 1.5444541, 1.8076433)
 
