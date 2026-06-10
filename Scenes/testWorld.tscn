@@ -246,7 +246,6 @@ position = Vector2(20, 20)
 points = PackedVector2Array(-5, 0, -15, 0)
 width = 2.0
 
-
 [node name="DebugWindow" type="Window" parent="UserInterface" unique_id=651005666]
 oversampling_override = 1.0
 initial_position = 3
@@ -255,7 +254,6 @@ visible = false
 popup_window = true
 
 [node name="DebugPanel" type="PanelContainer" parent="UserInterface" unique_id=1280980184]
-
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
 offset_left = 10.0

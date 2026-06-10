@@ -54,6 +54,7 @@ func _ready() -> void:
 	GUI.hide()
 	print(Input.get_joy_name(0))
 	get_viewport().set_embedding_subwindows(false)
+	Global.recreatePlayers()
 	#var DebugPanel = debWin.instantiate()
 	#add_child(DebugPanel)
 	#DebugPanel.visible = true
@@ -133,8 +134,10 @@ func spawn_player(id, team):
 
 	if team == "Cop":
 		spawn_point = cop_spawns.pick_random()
+		Global.player.spawnpoint = cop_spawns
 	else:
 		spawn_point = robber_spawns.pick_random()
+		Global.player.spawnpoint = robber_spawns
 
 	player.global_position = spawn_point.global_position
 

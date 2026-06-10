@@ -25,6 +25,7 @@ var myCurrentTeam : String
 var totalValue = 0
 
 var taskMode = false
+var isMainMenu = true
 
 func updateLabels(clipAmmo, reserveAmmo):
 	clipLabel.text = str(clipAmmo)
@@ -68,17 +69,14 @@ func replicateSpecificObject(bodyName, function, arg1):
 func changeScene(sceneString):
 	var players = get_tree().get_nodes_in_group("player")
 	for i in players:
-		i.reparent(get_tree().root, false)
-	get_tree().root.get_node("World/SpawnPoints").reparent(get_tree().root, false)
-	
+		i.reparent(get_tree().root, false) 
 	get_tree().change_scene_to_file(sceneString)
-	await get_tree().process_frame
-	await get_tree().process_frame 
-	# Very hacky way of waiting two frames to load scene.
-	# Works though
-	
-	for o in players:
-		o.reparent(get_tree().root.get_node("World"), false)
+
+func recreatePlayers():
+	var players = get_tree().get_nodes_in_group("player")
+	if players:
+		for o in players:
+			o.reparent(get_tree().root.get_node("World"), false)
 	
 	#Recursivley gather all players and move them to root node
 	#Change Scene

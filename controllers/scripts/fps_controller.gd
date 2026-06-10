@@ -27,6 +27,8 @@ var isCrouching : bool = false
 
 var currentRotation : float
 var cameraOffset : Vector3
+var sceneChanged = true
+var spawnpoint
 
 var gravity = 12
 var stamina = 100
@@ -52,6 +54,8 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	CROUCH_SHAPECAST.add_exception(self)
+	Global.isMainMenu = false  
+
 
 func _unhandled_input(event: InputEvent) -> void:
 
@@ -73,10 +77,16 @@ func _input(event):
 		get_tree().quit()
 	
 	if event.is_action_pressed("debug"):
-		Global.rpc("changeScene", "res://Scenes/Alternate Test World.tscn")
-		await get_tree().process_frame
-		Global.changeScene("res://Scenes/Alternate Test World.tscn")
-		
+		if sceneChanged == true:
+			Global.rpc("changeScene", "res://Scenes/Alternate Test World.tscn")
+			await get_tree().process_frame
+			Global.changeScene("res://Scenes/Alternate Test World.tscn")
+			sceneChanged = !sceneChanged
+		else:
+			Global.rpc("changeScene", "res://Scenes/testWorld.tscn")
+			await get_tree().process_frame
+			Global.changeScene("res://Scenes/testWorld.tscn")
+			sceneChanged = !sceneChanged
 
 func _update_camera(delta):
 
@@ -188,6 +198,7 @@ func take_damage(damage, type, team):
 
 		if Global.playerHealth <= 0:
 			Global.playerHealth = 100
+			global_position = spawnpoint.pick_random().global_position 
 
 
 func updatePlayerModel():
